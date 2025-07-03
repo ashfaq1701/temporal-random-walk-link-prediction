@@ -1,3 +1,7 @@
+from _temporal_random_walk import TemporalRandomWalk
+from tgb.linkproppred.dataset import LinkPropPredDataset
+
+
 def start_link_prediction_experiment(
         dataset_name,
         is_directed,
@@ -10,10 +14,23 @@ def start_link_prediction_experiment(
         edge_op,
         negative_edges_per_positive,
         n_epochs,
-        full_embedding_use_gpu,
+        embedding_use_gpu,
         link_prediction_use_gpu,
         word2vec_n_workers,
         output_path,
         n_runs
 ):
-    pass
+    dataset = LinkPropPredDataset(name=dataset_name, root="datasets", preprocess=True)
+    dataset.load_val_ns()
+    dataset.load_test_ns()
+
+    temporal_random_walk = TemporalRandomWalk(
+        is_directed=is_directed,
+        use_gpu=embedding_use_gpu,
+        max_time_capacity=streaming_window_duration,
+        enable_weight_computation=True
+    )
+
+    embedding_store = {}
+
+

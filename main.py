@@ -35,8 +35,8 @@ if __name__ == 'main':
                         help='Number of epochs for neural network training')
 
     # GPU settings
-    parser.add_argument('--full_embedding_use_gpu', action='store_true',
-                        help='Enable GPU acceleration for full embedding approach')
+    parser.add_argument('--embedding_use_gpu', action='store_true',
+                        help='Enable GPU acceleration for embedding approach')
     parser.add_argument('--link_prediction_use_gpu', action='store_true',
                         help='Enable GPU acceleration for link prediction neural network')
 
@@ -63,7 +63,7 @@ if __name__ == 'main':
         edge_op=args.edge_op,
         negative_edges_per_positive=args.negative_edges_per_positive,
         n_epochs=args.n_epochs,
-        full_embedding_use_gpu=args.full_embedding_use_gpu,
+        embedding_use_gpu=args.embedding_use_gpu,
         link_prediction_use_gpu=args.link_prediction_use_gpu,
         word2vec_n_workers=args.word2vec_n_workers,
         output_path=args.output_path,
