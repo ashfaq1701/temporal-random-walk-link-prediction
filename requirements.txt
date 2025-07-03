@@ -6,4 +6,3 @@ py-tgb
 jupyter
 matplotlib
 gensim
-datasets
