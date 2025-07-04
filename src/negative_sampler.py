@@ -3,8 +3,9 @@ import numpy as np
 
 
 class TemporalNegativeSampler:
-    def __init__(self, is_directed=True):
+    def __init__(self, max_node_id, is_directed=True):
         self.is_directed = is_directed
+        self.max_node_id = max_node_id
         self.added_edges: Set[Tuple[int, int]] = set()
         self.added_nodes: Set[int] = set()
         self.adj: Dict[int, Set[int]] = {}
@@ -35,14 +36,14 @@ class TemporalNegativeSampler:
                 ]
 
                 if len(hist_targets) == 0:
-                    hist_targets = self._get_random_candidates(src)
+                    hist_targets = self._get_random_candidates(src, num_negatives)
 
                 sample = np.random.choice(hist_targets, size=hist_k, replace=len(hist_targets) < hist_k)
                 negs.extend(sample)
 
             # === Random negatives ===
             if rand_k > 0:
-                rand_candidates = self._get_random_candidates(src)
+                rand_candidates = self._get_random_candidates(src, num_negatives)
                 sample = np.random.choice(rand_candidates, size=rand_k, replace=len(rand_candidates) < rand_k)
                 negs.extend(sample)
 
@@ -51,11 +52,12 @@ class TemporalNegativeSampler:
         self._update_state(current_batch)
         return negatives
 
-    def _get_random_candidates(self, src):
+    def _get_random_candidates(self, src, num_negatives):
         current_neighbors = self.adj.get(src, set())
         candidates = list(self.added_nodes - current_neighbors - {src})
         if not candidates:
-            raise ValueError(f"No random candidates available for src={src}")
+            candidates = np.random.randint(0, self.max_node_id + 1, size=num_negatives, dtype=np.int32)
+            return candidates
         return np.array(candidates, dtype=np.int32)
 
     def _update_state(self, current_batch):
