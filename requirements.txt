@@ -1,5 +1,3 @@
-temporal-random-walk
-temporal-negative_edge-sampler
 numpy
 pandas
 torch
@@ -8,3 +6,5 @@ jupyter
 matplotlib
 gensim
 pybind11
+temporal-random-walk
+temporal-negative_edge-sampler
