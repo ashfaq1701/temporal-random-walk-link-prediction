@@ -13,7 +13,7 @@ if __name__ == 'main':
     parser.add_argument('--output_path', type=str, required=True,
                         help='File path to save the results ')
 
-    parser.add_argument('--negative_edges_per_positive', type=int, default=1,
+    parser.add_argument('--negative_edges_per_positive', type=int, required=True,
                         help='Number of negative edges per positive edge')
 
     parser.add_argument('--historical_negative_percentage', type=float, default=0.5,
