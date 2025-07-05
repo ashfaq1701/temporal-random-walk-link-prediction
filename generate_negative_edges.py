@@ -2,7 +2,7 @@ import argparse
 
 from src.utils import sample_negative_dataset
 
-if __name__ == 'main':
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Temporal negative edge generator")
 
     parser.add_argument('--dataset_name', type=str, required=True,

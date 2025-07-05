@@ -2,7 +2,7 @@ import argparse
 
 from src.pipeline import start_link_prediction_experiment
 
-if __name__ == 'main':
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Temporal Link Prediction")
 
     # Required arguments
