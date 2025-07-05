@@ -10,7 +10,7 @@ if __name__ == '__main__':
     parser.add_argument('--is_directed', type=lambda x: x.lower() == 'true', required=True,
                         help='Whether the graph is directed (true/false)')
 
-    parser.add_argument('--output_path', type=str, required=True,
+    parser.add_argument('--save_path', type=str, required=True,
                         help='File path to save the results ')
 
     parser.add_argument('--negative_edges_per_positive', type=int, required=True,
