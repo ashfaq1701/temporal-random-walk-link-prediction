@@ -5,3 +5,6 @@ venv
 __pycache__/
 
 .idea
+
+negative_edges/*
+!negative_edges/.gitkeep
