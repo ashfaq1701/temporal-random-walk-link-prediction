@@ -65,7 +65,7 @@ def suppress_word2vec_output():
         kv_logger.setLevel(original_kv_level)
 
 
-def sample_negative_dataset(dataset_name, save_path):
+def sample_negative_dataset(dataset_name, is_directed, save_path, num_negatives_per_positive=10, historical_negative_percentage=0.5):
     dataset = LinkPropPredDataset(
         name=dataset_name,
         root="datasets",
@@ -84,9 +84,9 @@ def sample_negative_dataset(dataset_name, save_path):
         train_sources,
         train_targets,
         train_timestamps,
-        is_directed=True,
-        num_negatives_per_positive=10,
-        historical_negative_percentage=0.5
+        is_directed=is_directed,
+        num_negatives_per_positive=num_negatives_per_positive,
+        historical_negative_percentage=historical_negative_percentage
     )
 
     with open(save_path, "wb") as f:
